@@ -164,6 +164,14 @@ router.get('/stands', (req, res) => {
   });
 });
 
+router.put('/stands/:id/verify', (req, res) => {
+  const verified = req.body.verified ? 1 : 0;
+  db.run('UPDATE stands SET is_verified = ? WHERE id = ?', [verified, req.params.id], function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ message: verified ? 'Stand verified.' : 'Verification removed.' });
+  });
+});
+
 router.delete('/stands/:id', (req, res) => {
   db.run('DELETE FROM stands WHERE id = ?', [req.params.id], function (err) {
     if (err) return res.status(500).json({ error: err.message });

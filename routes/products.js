@@ -50,7 +50,7 @@ router.get('/', (req, res) => {
 
   const where = conditions.length ? 'WHERE ' + conditions.join(' AND ') : '';
   const sql = `
-    SELECT p.*, s.vendor_name, s.stand_description, s.city
+    SELECT p.*, s.vendor_name, s.stand_description, s.city, s.is_verified
     FROM products p
     JOIN stands s ON p.stand_id = s.id
     ${where}
@@ -64,7 +64,7 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   const sql = `
-    SELECT p.*, s.vendor_name, s.phone_number, s.stand_description, s.user_id as stand_owner_id
+    SELECT p.*, s.vendor_name, s.phone_number, s.stand_description, s.user_id as stand_owner_id, s.is_verified
     FROM products p
     JOIN stands s ON p.stand_id = s.id
     WHERE p.id = ?

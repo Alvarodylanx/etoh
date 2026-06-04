@@ -453,23 +453,49 @@ function Stands() {
     setStands((s) => s.filter((x) => x.id !== id));
   }
 
+  async function toggleVerify(stand) {
+    const next = !stand.is_verified;
+    await adminFetch(`/stands/${stand.id}/verify`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ verified: next }),
+    });
+    setStands(s => s.map(x => x.id === stand.id ? { ...x, is_verified: next ? 1 : 0 } : x));
+  }
+
   return (
     <div>
       <h2 style={sh}>Stands ({stands.length})</h2>
       {loading ? <div style={{ textAlign:'center', padding:40, color:'#94a3b8' }}>Loading…</div> : (
         <div style={tableWrap}>
           <table style={tbl}>
-            <thead><tr>{['Stand Name','City','Owner','Email','Products','Joined','Actions'].map((h) => <th key={h} style={th}>{h}</th>)}</tr></thead>
+            <thead><tr>{['Stand Name','City','Owner','Email','Products','Joined','Verified','Actions'].map((h) => <th key={h} style={th}>{h}</th>)}</tr></thead>
             <tbody>
               {stands.map((s) => (
                 <tr key={s.id} style={{ borderBottom:'1px solid #f1f5f9' }}>
-                  <td style={{ ...td, fontWeight:600 }}>{s.vendor_name}</td>
+                  <td style={{ ...td, fontWeight:600 }}>
+                    {s.vendor_name}
+                    {s.is_verified ? <span style={{ marginLeft:6, background:'#d1fae5', color:'#065f46', borderRadius:999, padding:'2px 8px', fontSize:'.72rem', fontWeight:800 }}>🦁 Certified</span> : null}
+                  </td>
                   <td style={td}><span style={badge}>{s.city || '—'}</span></td>
                   <td style={td}>{s.owner_name || '—'}</td>
                   <td style={td}>{s.owner_email || '—'}</td>
                   <td style={{ ...td, textAlign:'center', fontWeight:700 }}>{s.product_count}</td>
                   <td style={td}>{new Date(s.creation_date).toLocaleDateString()}</td>
-                  <td style={td}><button style={btnDel} onClick={() => del(s.id, s.vendor_name)}>🗑️ Delete</button></td>
+                  <td style={{ ...td, textAlign:'center' }}>
+                    {s.is_verified ? '🟢' : '⚪'}
+                  </td>
+                  <td style={td}>
+                    <div style={{ display:'flex', gap:6 }}>
+                      <button
+                        style={s.is_verified ? { ...btnDel, background:'#fef9c3', color:'#854d0e' } : { ...btnEdit }}
+                        onClick={() => toggleVerify(s)}
+                      >
+                        {s.is_verified ? '✗ Remove' : '✓ Verify'}
+                      </button>
+                      <button style={btnDel} onClick={() => del(s.id, s.vendor_name)}>🗑️</button>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>

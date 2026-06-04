@@ -74,6 +74,7 @@ db.serialize(() => {
     "ALTER TABLE stands ADD COLUMN user_id INTEGER REFERENCES users(id)",
     "ALTER TABLE stands ADD COLUMN city TEXT DEFAULT 'Douala'",
     "ALTER TABLE products ADD COLUMN category TEXT DEFAULT 'general'",
+    "ALTER TABLE stands ADD COLUMN is_verified INTEGER DEFAULT 0",
   ];
   migrations.forEach((sql) => db.run(sql, () => {}));
 

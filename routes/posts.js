@@ -16,7 +16,7 @@ const upload = multer({ storage, limits: { fileSize: 100 * 1024 * 1024 } });
 router.get('/', (req, res) => {
   const sql = `
     SELECT p.*, u.name as author_name, u.profile_picture as author_pic,
-           s.vendor_name, s.id as stand_id
+           s.vendor_name, s.id as stand_id, s.is_verified
     FROM posts p
     JOIN users u ON p.user_id = u.id
     LEFT JOIN stands s ON p.stand_id = s.id
