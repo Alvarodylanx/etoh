@@ -561,6 +561,60 @@ body { font-family:'Segoe UI',system-ui,-apple-system,sans-serif; background:var
 .record-timer { font-weight:700; font-size:1.1rem; color:var(--red); font-variant-numeric:tabular-nums; }
 .record-status { font-size:.85rem; color:var(--text-muted); }
 
+/* ── Language toggle ───────────────────────────────────── */
+.lang-toggle {
+  background:rgba(255,255,255,.2); border:2px solid rgba(255,255,255,.35);
+  color:white; border-radius:999px; padding:5px 12px;
+  font-size:.8rem; font-weight:700; cursor:pointer; transition:all .15s;
+  white-space:nowrap; flex-shrink:0;
+}
+.lang-toggle:hover { background:rgba(255,255,255,.35); }
+
+/* ── Verified Vendor Badge ─────────────────────────────── */
+.vendor-verified {
+  display:inline-flex; align-items:center; gap:3px;
+  background:#ecfdf5; color:#059669;
+  border:1px solid #6ee7b7; border-radius:999px;
+  padding:2px 8px; font-size:.72rem; font-weight:800; white-space:nowrap;
+}
+
+/* ── Bargain Calculator ────────────────────────────────── */
+.bargain-calc {
+  background:var(--primary-light);
+  border:2px solid #FDE68A;
+  border-radius:var(--radius);
+  padding:18px; margin-top:18px;
+  animation:fadeInUp .35s ease both;
+}
+.bargain-title   { font-weight:800; font-size:.95rem; margin-bottom:3px; }
+.bargain-subtitle { font-size:.8rem; color:var(--text-muted); margin-bottom:12px; }
+.bargain-tiers {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:8px; margin-bottom:10px;
+}
+.bargain-tier {
+  border:2px solid; border-radius:var(--radius-sm);
+  padding:10px 6px; cursor:pointer;
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+  transition:all .18s; font-family:inherit;
+}
+.bargain-tier:hover, .bargain-tier.active {
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
+.bargain-tier-label { font-weight:800; font-size:.82rem; }
+.bargain-tier-pct   { font-size:.72rem; opacity:.8; }
+.bargain-tier-price { font-weight:900; font-size:.88rem; }
+.bargain-copy {
+  width:100%; padding:10px;
+  background:var(--primary); color:white;
+  border:none; border-radius:var(--radius-sm);
+  font-weight:700; font-size:.85rem; cursor:pointer;
+  transition:all .2s; animation:fadeInUp .25s ease;
+  font-family:inherit;
+}
+.bargain-copy:hover { background:var(--primary-dark); transform:translateY(-1px); }
+
 /* ── Responsive ────────────────────────────────────────── */
 @media (max-width:768px) {
   .product-detail { grid-template-columns:1fr; }
