@@ -508,6 +508,70 @@ body { font-family:'Segoe UI',system-ui,-apple-system,sans-serif; background:var
 }
 .reels-empty h3 { color:white; font-size:1.3rem; margin-bottom:8px; }
 
+/* ── Prix du Marché ─────────────────────────────────── */
+.prix-header {
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:16px; flex-wrap:wrap; margin-bottom:24px;
+}
+.prix-main-title { font-size:1.7rem; font-weight:900; margin-bottom:6px; }
+.prix-main-sub   { color:var(--text-muted); font-size:.95rem; }
+
+.prix-form-wrap {
+  background:var(--primary-light); border:2px solid #FDE68A;
+  border-radius:var(--radius); padding:22px; margin-bottom:24px;
+  animation:fadeInUp .3s ease;
+}
+.prix-form-title { font-weight:800; font-size:1rem; margin-bottom:16px; }
+
+.prix-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:16px; margin-bottom:32px;
+}
+.prix-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:var(--radius); padding:18px;
+  box-shadow:var(--shadow); transition:transform .2s, box-shadow .2s;
+}
+.prix-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-lg); }
+
+.prix-card-header {
+  display:flex; align-items:center; gap:12px; margin-bottom:14px;
+}
+.prix-icon  { font-size:2rem; flex-shrink:0; }
+.prix-name  { font-weight:800; font-size:.95rem; }
+.prix-unit  { font-size:.78rem; color:var(--text-muted); }
+.prix-count {
+  margin-left:auto; font-size:.7rem; font-weight:700;
+  background:var(--primary-light); color:var(--primary-dark);
+  border-radius:999px; padding:2px 8px; white-space:nowrap;
+}
+
+.prix-stats {
+  display:grid; grid-template-columns:1fr 1.2fr 1fr;
+  gap:4px; text-align:center;
+  background:#f8fafc; border-radius:var(--radius-sm); padding:10px 6px;
+}
+.prix-stat       { display:flex; flex-direction:column; align-items:center; gap:2px; }
+.prix-stat-avg   { border-left:1px solid var(--border); border-right:1px solid var(--border); }
+.prix-stat-label { font-size:.68rem; color:var(--text-muted); font-weight:700; text-transform:uppercase; letter-spacing:.3px; }
+.prix-stat-val   { font-size:1rem; font-weight:900; color:var(--text); }
+.prix-cfa        { font-size:.65rem; color:var(--text-muted); font-weight:700; margin-top:-2px; }
+
+.prix-no-data {
+  font-size:.82rem; color:var(--text-muted); text-align:center;
+  padding:12px; background:#f8fafc; border-radius:var(--radius-sm);
+  font-style:italic;
+}
+
+.prix-info-box {
+  background:linear-gradient(135deg,#eff6ff,#dbeafe);
+  border:1px solid #bfdbfe; border-radius:var(--radius);
+  padding:20px 24px; margin-top:8px;
+}
+.prix-info-title { font-weight:800; margin-bottom:8px; font-size:.95rem; color:#1d4ed8; }
+.prix-info-box p { font-size:.88rem; color:#1e3a8a; line-height:1.7; }
+
 /* ── Mobile: hide panels, full-width video ───────────── */
 @media (max-width:900px) {
   .buzz-left { display:none; }

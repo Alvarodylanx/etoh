@@ -17,6 +17,7 @@ app.use('/api/products', require('./routes/products'));
 app.use('/api/orders',   require('./routes/orders'));
 app.use('/api/posts',    require('./routes/posts'));
 app.use('/api/ai',       require('./routes/gemini'));
+app.use('/api/prices',   require('./routes/prices'));
 
 const clientDist = path.join(__dirname, 'client', 'dist');
 app.use(express.static(clientDist));
